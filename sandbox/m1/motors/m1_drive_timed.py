@@ -64,6 +64,7 @@ Authors: David Fisher and Hannah Levine.
 #    print("  Timed Driving")
 #    print("--------------------------------------------")
 #    ev3.Sound.speak("Timed Driving").wait()
+import ev3dev.ev3 as ev3
 
 def main():
     print("--------------------------------------------")
@@ -79,8 +80,8 @@ def main():
     assert left_motor.connected
     assert right_motor.connected
 
-    time_s = 1  # Any value other than 0.
-    while time_s != 0:
+    time = 1  # Any value other than 0.
+    while time != 0:
         all_sp = int(input("Enter a speed (0 to 900 dps): "))
         distance_s = int(input("Distance to travel (inches): "))
         left_motor.run_forever(speed_sp=all_sp)
