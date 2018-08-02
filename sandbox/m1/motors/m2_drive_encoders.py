@@ -9,6 +9,7 @@ Authors: David Fisher and Hannah Levine.
 
 import ev3dev.ev3 as ev3
 import time
+import math
 
 # DONE: 2. Copy the contents of your m1_drive_timed.py and paste that text into this file below these comments.
 #   If your program says and prints anything at the start change it to print and say "Drive using encoders"
