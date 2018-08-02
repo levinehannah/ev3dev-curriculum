@@ -34,6 +34,8 @@ Authors: David Fisher and Hannah Levine.
 
 import ev3dev.ev3 as ev3
 import robot_controller as robo
+import time
+import math
 
 
 def main():
