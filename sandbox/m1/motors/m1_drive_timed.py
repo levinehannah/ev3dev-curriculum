@@ -65,6 +65,7 @@ Authors: David Fisher and Hannah Levine.
 #    print("--------------------------------------------")
 #    ev3.Sound.speak("Timed Driving").wait()
 import ev3dev.ev3 as ev3
+import time
 
 def main():
     print("--------------------------------------------")
