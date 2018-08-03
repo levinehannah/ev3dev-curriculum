@@ -9,8 +9,8 @@ function gets the robot to that location it will stop the robot and return.  Wit
 prompted if they want to find the beacon again (presumably you move it first) or quit.
 
 
-Authors: David Fisher and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+Authors: David Fisher and Hannah Levine.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 import traceback
 
 import ev3dev.ev3 as ev3
@@ -18,7 +18,6 @@ import time
 import math
 
 import robot_controller as robo
-
 
 def main():
     print("--------------------------------------------")
@@ -31,7 +30,7 @@ def main():
         while True:
             seek_beacon(robot)
 
-            # TODO: 5. Save the result of the seek_beacon function (a bool), then use that value to only say "Found the
+            # DONE: 5. Save the result of the seek_beacon function (a bool), then use that value to only say "Found the
             # beacon" if the return value is True.  (i.e. don't say "Found the beacon" if the attempts was cancelled.)
             ev3.Sound.speak("Found the beacon")
 
@@ -56,23 +55,26 @@ def seek_beacon(robot):
       :rtype: bool
     """
 
-    # TODO: 2. Create a BeaconSeeker object on channel 1.
+    # DONE: 2. Create a BeaconSeeker object on channel 1.
 
     forward_speed = 300
     turn_speed = 100
+    beacon_seeker = ev3.BeaconSeeker(channel=1)
 
     while not robot.touch_sensor.is_pressed:
         # The touch sensor can be used to abort the attempt (sometimes handy during testing)
 
-        # TODO: 3. Use the beacon_seeker object to get the current heading and distance.
-        current_heading = 0  # use the beacon_seeker heading
-        current_distance = 0  # use the beacon_seeker distance
+        # DONE: 3. Use the beacon_seeker object to get the current heading and distance.
+        current_heading = beacon_seeker.heading  # use the beacon_seeker
+            # heading
+        current_distance = beacon_seeker.distance  # use the beacon_seeker
+        # distance
         if current_distance == -128:
             # If the IR Remote is not found just sit idle for this program until it is moved.
             print("IR Remote not found. Distance is -128")
             robot.stop()
         else:
-            # TODO: 4. Implement the following strategy to find the beacon.
+            # DONE: 4. Implement the following strategy to find the beacon.
             # If the absolute value of the current_heading is less than 2, you are on the right heading.
             #     If the current_distance is 0 return from this function, you have found the beacon!  return True
             #     If the current_distance is greater than 0 drive straight forward (forward_speed, forward_speed)
@@ -87,19 +89,25 @@ def seek_beacon(robot):
             #    print("On the right heading. Distance: ", current_distance)
             #    print("Adjusting heading: ", current_heading)
             #    print("Heading is too far off to fix: ", current_heading)
-
-            # Here is some code to help get you started
             if math.fabs(current_heading) < 2:
-                # Close enough of a heading to move forward
-                print("On the right heading. Distance: ", current_distance)
-                # You add more!
-
-
-
-
-
-
-
+                if current_distance > 1:
+                    robot.forward(200, 200)
+                    print("on current heading, distance =", current_distance)
+            if current_distance == 1:
+                print('Z marks the spot!!!')
+                time.sleep(1.0)
+                robot.stop()
+                return True
+            if math.fabs(current_heading) > 2 and math.fabs(
+                    current_distance) < 10:
+                if current_heading < 0:
+                    print('wrong way! turning left')
+                    robot.left(200, 200)
+                if current_heading > 0:
+                    print('wrony way! turning right')
+                    robot.right(200, 200)
+            if math.fabs(current_heading) > 10:
+                print('Heading too far off')
         time.sleep(0.2)
 
     # The touch_sensor was pressed to abort the attempt if this code runs.
@@ -107,7 +115,8 @@ def seek_beacon(robot):
     robot.stop()
     return False
 
-    # TODO: 6. Demo your program by putting the beacon within a few feet of the robot, within 30 degrees of straight in
+    # DONE: 6. Demo your program by putting the beacon within a few feet of the
+    #  robot, within 30 degrees of straight in
     # front.  The robot should drive to and stop at the beacon.  After a successful run move the beacon then do it again
     # for the demo.  During testing if your robot fails to find the beacon remember that you can press the touch sensor
     # to abandon ship on the attempt. ;) You must demo 2 successful finds to check off but you can have as many attempts
