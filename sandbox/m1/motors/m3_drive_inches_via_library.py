@@ -28,8 +28,7 @@ Authors: David Fisher and Hannah Levine.
 #   500 dps -24 inches
 #   Should work exactly as before with these tests and more.  It should beep after the movement is over.
 
-# DONE500
-# : 5. Call over a TA or instructor to sign your team's checkoff sheet and do a code review of your library.
+# DONE: 5. Call over a TA or instructor to sign your team's checkoff sheet and do a code review of your library.
 #
 # Observations you should make, you are a TEAM and making great library methods will make life easier for everyone.
 
