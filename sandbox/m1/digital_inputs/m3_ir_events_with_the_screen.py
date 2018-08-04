@@ -19,7 +19,7 @@ To restart the Brickman interface after you complete this problem type:
   sudo chvt 1
 Which will probably not require you to type the password since sudo was just run earlier.
 
-BTW chvt means CHange the Virtual Terminal, and 86ing something means to kick it out.
+BTW chvt means cHange the Virtual Terminal, and 86ing something means to kick it out.
 
 Authors: David Fisher and Hannah Levine.
 """  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.

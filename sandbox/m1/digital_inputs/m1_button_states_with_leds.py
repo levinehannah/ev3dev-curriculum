@@ -20,10 +20,11 @@ def main():
     print("--------------------------------------------")
     print(" Buttons and LEDs")
     print("--------------------------------------------")
-    ev3.Sound.speak("Buttons and L E Dees").wait()
+    ev3.Sound.speak("Buttons and LEDs").wait()
 
     # Opening LED dance (to show the LED syntax)
     # Red LEDs
+
     ev3.Sound.speak("Red")
     ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.RED)
     ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.RED)
